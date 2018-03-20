@@ -1,5 +1,10 @@
 const chai = require('chai');
 
+// import factory.js
+const factory = require('./factory');
+
+let dogNames = factory.dogNames();
+
 const Iterator = function(items) {
     this.index = 0;
     this.items = items;
@@ -28,7 +33,7 @@ Iterator.prototype = {
 };
 
 function iterate() {
-    let items = ["one", 2, "circle", true, "Applepie"];
+    let items = dogNames;
     let iter = new Iterator(items);
 
     // using a for loop
@@ -49,6 +54,11 @@ describe('Iterator Test', function () {
     it('Should return an Array', function () {
         // run();
         chai.expect(iterate()).to.be.an('array')
-
     });
 });
+//
+// module.exports = {
+//     dogNames: function() {
+//         return dogNames;
+//     }
+// };
