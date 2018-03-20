@@ -1,4 +1,4 @@
-const assert = require('assert');
+// const assert = require('assert');
 const chai = require('chai');
 
 //factory function
@@ -18,10 +18,9 @@ describe('Factory Test', function () {
     it('Should return: Woof', function () {
         //make a new dog object
         const sniffles = dog();
-        // assert.strictEqual(sniffles.talk(), 'Woof', 'Should output: Woof');
-        chai.expect(sniffles.talk()).to.equal('Woof');
 
-        // assert.equal(sniffles.talk());
+        //Check if sniffles outputs Woof
+        chai.expect(sniffles.talk()).to.equal('Woof');
     });
 });
 

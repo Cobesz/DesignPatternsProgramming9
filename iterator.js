@@ -1,3 +1,5 @@
+const chai = require('chai');
+
 const Iterator = function(items) {
     this.index = 0;
     this.items = items;
@@ -25,34 +27,28 @@ Iterator.prototype = {
     }
 };
 
-// log helper
-
-const log = (function() {
-    let log = "";
-    return {
-        add: function(msg) { log += msg + "\n"; },
-        show: function() { console.log(log); log = ""; }
-    }
-})();
-
-function run() {
+function iterate() {
     let items = ["one", 2, "circle", true, "Applepie"];
     let iter = new Iterator(items);
 
-    // using for loop
-
+    // using a for loop
+    let iterArray = [];
     for (let item = iter.first(); iter.hasNext(); item = iter.next()) {
-        log.add(item);
+        iterArray.push(item);
     }
-    log.add("");
 
     // using Iterator's each method
+    // iter.each(function(item) {
+    //     console.log('single item is: ', item);
+    // });
 
-    iter.each(function(item) {
-        log.add(item);
-    });
-
-    log.show();
+    return iterArray;
 }
 
-run ();
+describe('Iterator Test', function () {
+    it('Should return an Array', function () {
+        // run();
+        chai.expect(iterate()).to.be.an('array')
+
+    });
+});

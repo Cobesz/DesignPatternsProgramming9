@@ -2,42 +2,32 @@ const User = function(name) {
     this.name = name;
 
     this.say = function() {
-        log.add("User: " + this.name);
+        return 'User: ' + this.name;
     };
 };
 
 const DecoratedUser = function(user, street, city) {
-    this.user = user;
-    this.name = user.name;  // ensures interface stays the same
+    this.name = user.name;
     this.street = street;
     this.city = city;
 
     this.say = function() {
-        log.add("Decorated User: " + this.name + ", " +
-            this.street + ", " + this.city);
+
+        return "Decorated User: " + this.name + ", " +
+            this.street + ", " + this.city;
+        // log.add();
     };
 };
 
-// logging helper
+function createUser(name, street, city) {
 
-const log = (function() {
-    let log = "";
+    let user = new User(name);
+    console.log(user.say());
 
-    return {
-        add: function(msg) { log += msg + "\n"; },
-        show: function() { console.log(log); log = ""; }
-    }
-})();
+    let decorated = new DecoratedUser(user, street, city);
+    console.log(decorated.say());
 
-function run() {
-
-    let user = new User("Kelly");
-    user.say();
-
-    let decorated = new DecoratedUser(user, "Broadway", "New York");
-    decorated.say();
-
-    log.show();
 }
 
-run();
+createUser('Sjaak', 'Broadway', 'New York');
+createUser('Harrie', 'Laan op Zuid', 'Rotterdam');
