@@ -1,4 +1,3 @@
-// const assert = require('assert');
 const chai = require('chai');
 
 let dogNames = [];
@@ -27,13 +26,13 @@ describe('Factory Test', function () {
 });
 
 //make a new dog object
-const sniffles = dog('sniffles');
-const puffy = dog('puffy');
+const sniffles = dog('Sniffles');
+const puffy = dog('Puffy');
 
 dogNames.push(sniffles.dogName, puffy.dogName);
 
 module.exports = {
-    dogNames: function() {
+    dogNames: function () {
         return dogNames;
     }
 };

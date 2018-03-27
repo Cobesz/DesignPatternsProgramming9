@@ -5,27 +5,27 @@ const factory = require('./factory');
 
 let dogNames = factory.dogNames();
 
-const Iterator = function(items) {
+const Iterator = function (items) {
     this.index = 0;
     this.items = items;
 };
 
 
 Iterator.prototype = {
-    first: function() {
+    first: function () {
         this.reset();
         return this.next();
     },
-    next: function() {
+    next: function () {
         return this.items[this.index++];
     },
-    hasNext: function() {
+    hasNext: function () {
         return this.index <= this.items.length;
     },
-    reset: function() {
+    reset: function () {
         this.index = 0;
     },
-    each: function(callback) {
+    each: function (callback) {
         for (let item = this.first(); this.hasNext(); item = this.next()) {
             callback(item);
         }
@@ -33,32 +33,14 @@ Iterator.prototype = {
 };
 
 function iterate() {
-    let items = dogNames;
-    let iter = new Iterator(items);
+    this.iterate = new Iterator(dogNames);
 
-    // using a for loop
-    let iterArray = [];
-    for (let item = iter.first(); iter.hasNext(); item = iter.next()) {
-        iterArray.push(item);
-    }
-
-    // using Iterator's each method
-    // iter.each(function(item) {
-    //     console.log('single item is: ', item);
-    // });
-
-    return iterArray;
+    return this.iterate;
 }
 
-describe('Iterator Test', function () {
-    it('Should return an Array', function () {
-        // run();
-        chai.expect(iterate()).to.be.an('array')
-    });
-});
-//
-// module.exports = {
-//     dogNames: function() {
-//         return dogNames;
-//     }
-// };
+// passing iterate method to decator file. This way I can use the logic there.
+module.exports = {
+    iterate: function () {
+        return iterate();
+    }
+};
