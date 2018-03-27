@@ -3,13 +3,12 @@ const chai = require('chai');
 // import factory.js
 const factory = require('./factory');
 
-let dogNames = factory.dogNames();
+const animals = factory.animals();
 
 const Iterator = function (items) {
     this.index = 0;
     this.items = items;
 };
-
 
 Iterator.prototype = {
     first: function () {
@@ -25,15 +24,15 @@ Iterator.prototype = {
     reset: function () {
         this.index = 0;
     },
-    each: function (callback) {
+    each: function (items) {
         for (let item = this.first(); this.hasNext(); item = this.next()) {
-            callback(item);
+            items(item);
         }
     }
 };
 
 function iterate() {
-    this.iterate = new Iterator(dogNames);
+    this.iterate = new Iterator(animals);
 
     return this.iterate;
 }

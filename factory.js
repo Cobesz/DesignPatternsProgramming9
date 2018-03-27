@@ -1,18 +1,30 @@
 const chai = require('chai');
 
-let dogNames = [];
+const animals = [];
 
 //factory function
 const dog = (name) => {
     const sound = 'Woof';
-    const dogName = name;
+    const type = 'Dog';
     return {
         talk: () => {
-            return sound + ' my name is ' + dogName
+            return sound + ' my name is ' + name
         },
-        dogName
+        name, type
     }
 };
+
+const cat = (name) => {
+    const sound = 'Miauw';
+    const type = 'Cat';
+    return {
+        talk: () => {
+            return sound + ' my name is ' + name
+        },
+        name, type
+    }
+};
+
 
 describe('Factory Test', function () {
     it('Should return: Woof and his name', function () {
@@ -21,18 +33,21 @@ describe('Factory Test', function () {
         const sniffles = dog('sniffles');
 
         //Check if sniffles outputs Woof
-        chai.expect(sniffles.talk()).to.equal('Woof my name is ' + sniffles.dogName);
+        chai.expect(sniffles.talk()).to.equal('Woof my name is ' + sniffles.name);
     });
 });
 
+
 //make a new dog object
 const sniffles = dog('Sniffles');
-const puffy = dog('Puffy');
 
-dogNames.push(sniffles.dogName, puffy.dogName);
+const bagheera = cat('Bagheera');
+
+animals.push(sniffles, bagheera);
+
 
 module.exports = {
-    dogNames: function () {
-        return dogNames;
+    animals: function () {
+        return animals;
     }
 };
